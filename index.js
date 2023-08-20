@@ -20,8 +20,8 @@ inquirer
         },
         {
             type: 'input',
-            message: 'Write three characters to go inside of your image',
-            name: 'text'
+            message: 'Write (up to) three characters to go inside of your image',
+            name: 'text',
         },
     ]);
 
