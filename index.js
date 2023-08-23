@@ -1,8 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Circle = require('./lib/circle');
-const Square = require('./lib/square');
-const Triangle = require('./lib/triangle');
+const {Text, Circle, Triangle, Square} = require('./lib/shape');
+const SVG = require('./lib/SVG');
 
 inquirer
     .prompt([
@@ -32,25 +31,31 @@ inquirer
             name: 'tColor',
         }
     ]).then((res) => {
+        const textInput = new Text(res.text, res.tColor);
+        var shapeInput;
 
-        const shapeInput = res.shape;
-
-        if(shapeInput === "Triangle") {
-            const shapeGenerate = new Triangle(
-                res.text,
-                res.tColor,
+        if(res.shape === "Triangle") {
+             shapeInput = new Triangle(
                 res.fill,
             );
-            const SVGFile = shapeGenerate.render(res);
-            console.log(SVGFile);
-            return fs.writeFile('generated.svg', SVGFile, (err) => {
+            
+        } else if (res.shape === "Circle") {
+            shapeInput = new Circle(
+                res.fill,
+            )
+        } else {
+            shapeInput = new Square(
+                res.fill,
+            );
+        };
+        const SVGOutput = new SVG(
+            textInput.render(),
+            shapeInput.render(),
+        );
+            console.log(SVGOutput.render());
+            return fs.writeFile('generated.svg', SVGOutput.render(), (err) => {
                 err ? console.error("error") : console.log("success!")
             });
-        } else if (shapeInput === "Circle") {
-            console.log('success circle')
-        } else {
-            console.log ('success Square');
-        }
     }
 
     );
