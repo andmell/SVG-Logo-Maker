@@ -37,13 +37,15 @@ inquirer
 
         if(shapeInput === "Triangle") {
             const shapeGenerate = new Triangle(
-                res.fill,
-                res.tColor,
                 res.text,
+                res.tColor,
+                res.fill,
             );
             const SVGFile = shapeGenerate.render(res);
-
-            return fs.writeFile('./examples.svg', SVGFile);
+            console.log(SVGFile);
+            return fs.writeFile('generated.svg', SVGFile, (err) => {
+                err ? console.error("error") : console.log("success!")
+            });
         } else if (shapeInput === "Circle") {
             console.log('success circle')
         } else {
