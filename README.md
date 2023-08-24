@@ -45,7 +45,8 @@ After successfully running, a new file called "generated.svg" will be created, a
 
 ![An image of a block of code detailing an SVG image, and the respective SVG image next to it](./assets/SVGExample.PNG)
 
-This application is useful for quickly generating an SVG image based on user input. A video walkthrough of this program can be seen [here](https://youtu.be/dXHvWHJbf0w)
+This application is useful for quickly generating an SVG image based on user input. A video walkthrough of this program can be seen [here](https://youtu.be/aKitLrSrJVE)
+
 
 ## Credits 
 - Jude Clark, a tutor found through Washington University's Fullstack Developer Bootcamp, has collaborated with me on this project.
