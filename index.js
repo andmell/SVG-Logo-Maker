@@ -3,6 +3,8 @@ const fs = require('fs');
 const {Text, Circle, Triangle, Square} = require('./lib/shape');
 const SVG = require('./lib/SVG');
 
+
+// Inquirer prompts that will gather information from the user
 inquirer
     .prompt([
         {
@@ -30,6 +32,7 @@ inquirer
             message: 'Input a color for the text that is going inside your image, with either a keyword (red, blue, etc) or a hexadecimal value',
             name: 'tColor',
         }
+        // Command to determine what image and text to generate based on the above input.
     ]).then((res) => {
         const textInput = new Text(res.text, res.tColor);
         var shapeInput;
@@ -52,21 +55,12 @@ inquirer
             textInput.render(),
             shapeInput.render(),
         );
-            console.log(SVGOutput.render());
-            return fs.writeFile('generated.svg', SVGOutput.render(), (err) => {
-                err ? console.error("error") : console.log("success!")
+        // Final command to generate shape.
+            return fs.writeFile('logo.svg', SVGOutput.render(), (err) => {
+                err ? console.error("error") : console.log("Generated Logo.SVG!")
             });
     }
 
     );
 
 
-/* TODO:
-- Write JS function that log results of prompts to console
-- Write JS function that creates an SVG image based off of prompt
-- 
-    Throw error if input for text is less than or greater than three characters
-    Throw error if color input is invalid
-
-     return writeFile('./examples.svg', html);
-*/
